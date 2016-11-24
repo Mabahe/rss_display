@@ -56,6 +56,9 @@ class TceForms
             $selectedItem = '';
             if (!empty($params['row']['pi_flexform'])) {
                 $values = $params['row']['pi_flexform'];
+                if (!is_array($values)) {
+                    $values = GeneralUtility::xml2array($values);
+                }
                 if (!empty($values['data']['sDEF']['lDEF']['settings.template'])) {
                     $selectedItem = $values['data']['sDEF']['lDEF']['settings.template']['vDEF'];
                 }
