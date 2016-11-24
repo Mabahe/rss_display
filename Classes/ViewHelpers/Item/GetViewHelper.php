@@ -25,14 +25,14 @@ class Tx_RssDisplay_ViewHelpers_Item_GetViewHelper extends AbstractViewHelper
      * Retrieve the SimplePie item from the context and return its "tag".
      *
      * @param string $value
+     * @param array $arguments
      * @return string
      */
-    public function render($value)
+    public function render($value, $arguments = array())
     {
 
         /** @var SimplePie_Item $item */
         $item = $this->templateVariableContainer->get('item');
-        $method = 'get_' . $value;
-        return $item->$method();
+        return call_user_func_array(array($item, 'get_' . $value), $arguments);
     }
 }
